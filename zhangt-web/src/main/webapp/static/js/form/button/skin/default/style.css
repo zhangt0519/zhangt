@@ -1,0 +1,72 @@
+/*buttons:按钮元素*/
+.btn{
+    background:url(btnbg.png) repeat-x 0 0;
+    height: 20px;
+    display:inline-block;
+    line-height:20px;
+    border: 1px solid #8BA7CF;
+    overflow: hidden;
+    vertical-align: middle;
+    margin: 2px 8px 2px 0;
+    padding: 0 10px 0 9px;
+    text-decoration:none !important;
+}
+.btn:hover{background-image: url(btnbg_hover.png);}
+.btn em{padding-left: 22px;display: block;}
+.search em{background:url(search.png) no-repeat 0 50%;}/*搜索*/
+.reset em{background:url(reset.png) no-repeat 0 50%;}/*重置*/
+.back em{background:url(back.png) no-repeat 0 50%;}/*返回*/
+.save em{background:url(filesave.png) no-repeat 0 50%;}/* 保存 */
+.add em{background: url(edit_add.png) no-repeat 0 50%;}/* 新建 */
+.edit em{background: url(pencil.png) no-repeat 0 50%;}/* 修改 */
+.view em{background: url(view.gif) no-repeat 0 50%;}/* 查砍 */
+.delete em{background: url(no.png) no-repeat left center;}/* 删除 */
+.logout em{background: url(logout.png) no-repeat left center;} /* 注销 */
+.distribution em{background: url(distribution.gif) no-repeat 0 50%;} /* 分配 */
+.withdrawn em{background: url(withdrawn.png) no-repeat left center;}  /* 撤回 */
+.upload em{background: url(shangchuan.png) no-repeat left center;}  /* 上传 */
+.download em{background: url(xiazai.png) no-repeat left center;}  /* 下载 */
+.mobile em{background: url(yidong.png) no-repeat left center;}  /* 移动 */
+.copy em{background: url(fuzhi.png) no-repeat left center;}  /* 复制 */
+.refresh em{background: url(shuaxin.png) no-repeat left center;}  /* 刷新 */
+.run em{background: url(yunxing.png) no-repeat left center;}  /* 运行 */
+.usermanagement em{background: url(yonghuguanli.png) no-repeat left center;}  /* 用户管理 */
+.import em{background: url(daoru.GIF) no-repeat left center;}  /* 导入 */
+.export em{background: url(daochu.GIF) no-repeat left center;}  /* 导出 */
+.ok em{background: url(queding.png) no-repeat left center;}  /* 确定 */
+.lock em{background: url(zhuxiao.gif) no-repeat left center;}  /*锁定 */
+.tishi em{background: url(tishi.png) no-repeat left center;}  /*初始化密码 */
+ /* 地图定位 .maplocation em{background: url(maplocation.png) no-repeat left center;} */
+ /* 设置 .set em{background: url(set.gif) no-repeat left center;} */
+  /* 更多 .more em{background: url(more.png) no-repeat left center;}*/
+/*信息纵览  机房图片页面中的图标定义*/
+.btn_jf{   
+    height: 20px;
+    display:inline-block;
+    line-height:20px;
+    overflow: hidden;
+    vertical-align: middle;
+    margin: 2px 8px 2px 0;
+    padding: 0 10px 0 9px;
+    text-decoration:none !important;
+}
+.maplocation em{background: url(maplocation.png) no-repeat left center; padding-left:20px;}  /* 地图定位 */
+.set em{background: url(set.gif) no-repeat left center;padding-left:20px;}  /* 设置 */
+.more em{background: url(more.png) no-repeat left center;padding-left:20px;}  /* 更多 */
+/*工具条*/
+.toolbar {
+    border:1px solid #A6C9E2;
+    margin: 0 auto/* 5px*/;
+    padding:0 7px;
+	height:26px; 
+    overflow: hidden;
+	background: #dfeffc url(ui-bg_glass_85_dfeffc_1x400.png) 50% 50% repeat-x;
+}
+.toolbar ul li{float:left;}
+.toolbar ul li a.btn{ float:left; color:#333; padding:1px 8px 1px 7px;background: none;margin: 2px 0;width: auto;*margin-top:3px;border: none;display: block;}
+.toolbar ul li a.btn:hover{	border: 1px solid #6694BE;padding: 0 7px 0 6px;	background:url(toolbar_btnbg.png) repeat-x 0 0;}
+
+
+.toolbar ul li{float:left;}
+.toolbar ul li input.btn{ float:left; color:#333; padding:1px 8px 1px 7px;background: none;margin: 2px 0;width: auto;*margin-top:3px;border: none;display: block;}
+.toolbar ul li input.btn:hover{	border: 1px solid #6694BE;padding: 0 7px 0 6px;	background:url(toolbar_btnbg.png) repeat-x 0 0;}

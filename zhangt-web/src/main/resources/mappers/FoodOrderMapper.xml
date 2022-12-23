@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhangt.sjz.dao.FoodOrderMapper">
+
+	<resultMap id="BaseResultMap" type="com.zhangt.sjz.domain.FoodOrder">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="order_price" property="orderPrice" jdbcType="DOUBLE" />
+		<result column="is_done" property="isDone" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,tel,order_price,is_done,create_time,update_time
+	</sql>
+
+
+	<insert id="insert" parameterType="com.zhangt.sjz.domain.FoodOrder" useGeneratedKeys="true" keyProperty="id">
+		insert into food_order(tel,order_price,is_done,create_time,update_time)
+		values(
+		#{tel},
+		#{orderPrice},
+		0,
+		now(),
+		now())
+	</insert>
+	
+	<update id="update" parameterType="com.zhangt.sjz.domain.FoodOrder">
+		update food_order
+		<set>
+			update_time = now()
+			<if test="orderPrice !=null">
+				,order_price = #{orderPrice}
+			</if>
+			<if test="isDone !=null">
+				,is_done = #{isDone}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="list">
+		delete from food_order
+		<where>
+			id in
+			<foreach collection="list" item="id" open="(" separator="," close=")">
+				#{id,jdbcType=INTEGER}
+			</foreach>
+		</where>
+	</delete>
+
+
+	<select id="queryTotal" parameterType="com.zhangt.sjz.domain.FoodOrder" resultType="int">
+		select
+		count(*)
+		from food_order
+		where 1=1
+		<if test="isDone !=null">
+			and is_done = #{isDone}
+		</if>
+		<if test="tel !=null and tel !=''">
+			and tel = #{tel}
+		</if>
+		<if test="startTimeStr !=null and startTimeStr != ''">
+			<![CDATA[ and create_time>=#{startTimeStr} ]]>
+		</if>
+		<if test="endTimeStr !=null and endTimeStr != ''">
+			<![CDATA[ and create_time<#{endTimeStr} ]]>
+		</if>
+	</select>
+
+
+	<select id="query" parameterType="com.zhangt.sjz.domain.FoodOrder"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from food_order
+		where 1=1
+		<if test="isDone !=null">
+			and is_done = #{isDone}
+		</if>
+		<if test="tel !=null and tel !=''">
+			and tel = #{tel}
+		</if>
+		<if test="startTimeStr !=null and startTimeStr != ''">
+			<![CDATA[ and create_time>=#{startTimeStr} ]]>
+		</if>
+		<if test="endTimeStr !=null and endTimeStr != ''">
+			<![CDATA[ and create_time<#{endTimeStr} ]]>
+		</if>
+		order by update_time desc
+	</select>
+
+
+</mapper>

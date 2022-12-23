@@ -1,0 +1,28 @@
+<%@ page contentType="text/html; charset=GBK"%>
+<%
+	String rootPath = request.getContextPath();
+%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>中国移综合网络资源管理系统</title>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+ function forward(){
+	    var workspace = window.open("<%=rootPath%>/frame/Index.jsp", "", "fullscreen=0,menubar=0,toolbar=0,directories=0,location=0,status=1,scrollbars=0");
+	    workspace.moveTo(0,0);
+	    workspace.resizeTo(screen.availWidth,screen.availHeight);
+	    workspace.focus();
+	    opener='popo';//不要跳出提示框
+	    window.close();
+	}
+
+//-->
+</script>
+
+</head>
+<body onload="forward()">
+
+
+</body>
+</html>

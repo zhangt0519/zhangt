@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhangt.sjz.dao.FoodMapper">
+
+	<resultMap id="BaseResultMap" type="com.zhangt.sjz.domain.Food">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="food_type_id" property="foodTypeId" jdbcType="INTEGER" />
+		<result column="price" property="price" jdbcType="DOUBLE" />
+		<result column="old_price" property="oldPrice" jdbcType="DOUBLE" />
+		<result column="is_discount" property="isDiscount" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,code,name,remark,food_type_id,price,old_price,is_discount,create_time,update_time
+	</sql>
+
+
+	<insert id="insert" parameterType="com.zhangt.sjz.domain.Food">
+		insert into food(code,name,remark,food_type_id,price,old_price,is_discount,create_time,update_time)
+		values(
+		#{code},
+		#{name},
+		#{remark},
+		#{foodTypeId},
+		#{price},
+		#{oldPrice},
+		#{isDiscount},
+		now(),
+		now())
+	</insert>
+	
+	<update id="update" parameterType="com.zhangt.sjz.domain.Food">
+		update food
+		<set>
+			update_time = now()
+			<if test="code !=null and code !=''">
+				,code = #{code}
+			</if>
+			<if test="name !=null and name !=''">
+				,name = #{name}
+			</if>
+			<if test="remark !=null and remark !=''">
+				,remark = #{remark}
+			</if>
+			<if test="foodTypeId !=null">
+				,food_type_id = #{foodTypeId}
+			</if>
+			<if test="price !=null">
+				,price = #{price}
+			</if>
+			<if test="oldPrice !=null">
+				,old_price = #{oldPrice}
+			</if>
+			<if test="isDiscount !=null">
+				,is_discount = #{isDiscount}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="list">
+		delete from food
+		<where>
+			id in
+			<foreach collection="list" item="id" open="(" separator="," close=")">
+				#{id,jdbcType=INTEGER}
+			</foreach>
+		</where>
+	</delete>
+
+
+	<select id="queryTotal" parameterType="com.zhangt.sjz.domain.Food" resultType="int">
+		select
+		count(*)
+		from food
+		where 1=1
+		<if test="code !=null and code !=''">
+			and code = #{code}
+		</if>
+		<if test="name !=null and name !=''">
+			and name like '%${name}%'
+		</if>
+		<if test="remark !=null and remark !=''">
+			and remark = #{remark}
+		</if>
+		<if test="foodTypeId !=null">
+			and food_type_id = #{foodTypeId}
+		</if>
+		<if test="price !=null">
+			and price = #{price}
+		</if>
+		<if test="oldPrice !=null">
+			,old_price = #{oldPrice}
+		</if>
+		<if test="isDiscount !=null">
+			and is_discount = #{isDiscount}
+		</if>
+	</select>
+
+
+	<select id="query" parameterType="com.zhangt.sjz.domain.Food"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from food
+		where 1=1
+		<if test="code !=null and code !=''">
+			and code = #{code}
+		</if>
+		<if test="name !=null and name !=''">
+			and name like '%${name}%'
+		</if>
+		<if test="remark !=null and remark !=''">
+			and remark = #{remark}
+		</if>
+		<if test="foodTypeId !=null">
+			and food_type_id = #{foodTypeId}
+		</if>
+		<if test="price !=null">
+			and price = #{price}
+		</if>
+		<if test="oldPrice !=null">
+			,old_price = #{oldPrice}
+		</if>
+		<if test="isDiscount !=null">
+			and is_discount = #{isDiscount}
+		</if>
+		order by update_time desc
+	</select>
+
+
+</mapper>
